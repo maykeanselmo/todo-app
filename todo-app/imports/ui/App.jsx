@@ -3,7 +3,6 @@ import React, {Fragment} from 'react';
 import { useTracker} from 'meteor/react-meteor-data';
 import { LoginForm } from './LoginForm';
 
-
 export const App = () => {
 
   const user = useTracker(() => Meteor.user());
