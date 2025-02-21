@@ -4,6 +4,9 @@ import { Meteor } from 'meteor/meteor';
 import { App } from '/imports/ui/App';
 
 import { createBrowserRouter, RouterProvider} from 'react-router-dom'; 
+import { Welcome } from '../imports/ui/routes/Welcome';
+import {TasksPage} from '../imports/ui/routes/TasksPage';
+
 Meteor.startup(() => {
   const container = document.getElementById('react-target');
   const root = createRoot(container);
@@ -12,6 +15,14 @@ Meteor.startup(() => {
     {
       path: "/",
       element: <App />,
+    },
+    {
+      path: "/welcome",
+      element: <Welcome />,
+    },
+    {
+      path: "/tasks",
+      element: <TasksPage />,
     },
   ]);
 

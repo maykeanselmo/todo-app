@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Meteor } from "meteor/meteor";
 import { Accounts } from "meteor/accounts-base";
+import { useNavigate } from 'react-router-dom';
 import "./LoginForm.css"; 
 
 export const LoginForm = () => {
@@ -39,6 +40,8 @@ export const LoginForm = () => {
           alert("Erro ao fazer login: " + error.reason);
         }
       });
+      //localStorage.setItem('user', username);
+      //navigate('/welcome');
     }
   };
 
