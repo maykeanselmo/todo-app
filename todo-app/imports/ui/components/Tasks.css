@@ -1,0 +1,13 @@
+.tasks-button{
+
+    all: unset; /* Reseta estilos padrões do botão */
+    display: block; /* Faz o botão ocupar o espaço corretamente */
+    width: 100%;
+    background-color: white; /* Define fundo branco */
+    border: none; /* Remove bordas */
+    padding: 0; /* Remove espaçamento interno */
+    width: 100%; /* Garante que ocupe toda a largura */
+    text-align: left; /* Alinha o conteúdo à esquerda */
+    cursor: pointer; /* Mantém o cursor de botão */
+  }
+  
