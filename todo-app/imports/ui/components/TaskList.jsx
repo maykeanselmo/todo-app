@@ -1,28 +1,25 @@
 import * as React from 'react';
-
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Checkbox from '@mui/material/Checkbox';
-import { green} from '@mui/material/colors';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import AssignmentIcon from '@mui/icons-material/Assignment';
-
-import './Tasks.css';
+import Popover from '@mui/material/Popover';
 import { TasksCollection } from '../../api/TasksCollection';
 import { useTracker, useSubscribe } from 'meteor/react-meteor-data';
 import { TreePoitIcon } from './TreePoitIcon';
+import { TaskOptionsButton } from './TaskOptionsButton';
 
 export const TaskList = () => {
   const isLoading = useSubscribe("tasks");
   const tasks = useTracker(() => TasksCollection.find({}).fetch());
   const [checked, setChecked] = React.useState([]);
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
-  
-  
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -36,7 +33,13 @@ export const TaskList = () => {
     setChecked(newChecked);
   };
 
-  const hello = (value) => console.log("item " + value);
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
 
   if (isLoading()) {
     return <div>Loading...</div>;
@@ -61,20 +64,19 @@ export const TaskList = () => {
           >
             <ListItemButton>
               <ListItemAvatar>
-              <Stack direction="row" spacing={2}>
-                <Avatar sx={{ bgcolor: "black", color: "white" }}>
-                <AssignmentIcon />
-              </Avatar>
-              </Stack>
+                <Stack direction="row" spacing={2}>
+                  <Avatar sx={{ bgcolor: "black", color: "white" }}>
+                    <AssignmentIcon />
+                  </Avatar>
+                </Stack>
               </ListItemAvatar>
-              <button className='tasks-button' onClick={() => hello(task.name)}> 
               <ListItemText id={labelId} primary={`${task.name}`} sx={{ color: "black" }} />
-              </button>
-              <TreePoitIcon/>
+              <TreePoitIcon onClick={handleMenuOpen} />
             </ListItemButton>
           </ListItem>
         );
       })}
+      <TaskOptionsButton anchorEl={anchorEl} handleClose={handleMenuClose} />
     </List>
   );
 };
