@@ -5,7 +5,7 @@ import { App } from '/imports/ui/App';
 import "../imports/api/tasksMethods"; 
 import { createBrowserRouter, RouterProvider} from 'react-router-dom'; 
 import { Welcome } from '../imports/ui/routes/Welcome';
-import {TasksPage} from '../imports/ui/routes/TasksPage';
+import {TasksPage} from '../imports/ui/routes/TasksPage.jsx';
 
 Meteor.startup(() => {
   const container = document.getElementById('react-target');
