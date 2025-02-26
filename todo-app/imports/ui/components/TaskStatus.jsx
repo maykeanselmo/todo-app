@@ -7,7 +7,7 @@ export const TaskStatus = () => {
     <ButtonGroup variant="contained" aria-label="Basic button group">
       <Button
         sx={{
-          backgroundColor: "#bdbdbd", // Cinza
+          backgroundColor: "#bdbdbd",
           color: "#fff",
           "&:hover": { backgroundColor: "#9e9e9e" }
         }}
@@ -17,7 +17,7 @@ export const TaskStatus = () => {
 
       <Button
         sx={{
-          backgroundColor: "#64b5f6", // Azul claro
+          backgroundColor: "#64b5f6", 
           color: "#fff",
           "&:hover": { backgroundColor: "#42a5f5" }
         }}
@@ -27,7 +27,7 @@ export const TaskStatus = () => {
 
       <Button
         sx={{
-          backgroundColor: "#66bb6a", // Verde claro
+          backgroundColor: "#66bb6a", 
           color: "#fff",
           "&:hover": { backgroundColor: "#388e3c" }
         }}
