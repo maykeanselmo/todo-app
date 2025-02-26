@@ -17,13 +17,10 @@ const theme = createTheme({
   },
 });
 
-const buttons = [
-  <Button key="one" style={{ backgroundColor: 'black', color: 'white' }}>Editar</Button>,
-  <Button key="two" style={{ backgroundColor: 'black', color: 'white' }}>Deletar</Button>,
-];
-
-export const TaskOptionsButton = ({ anchorEl, handleClose }) => {
+export const TaskOptionsButton = ({ anchorEl, handleClose, taskId, onEdit, onDelete }) => {
   const open = Boolean(anchorEl);
+
+
   return (
     <ThemeProvider theme={theme}>
       <Popover
@@ -49,10 +46,21 @@ export const TaskOptionsButton = ({ anchorEl, handleClose }) => {
             aria-label="Vertical button group"
             variant="contained"
           >
-            {buttons}
+            <Button 
+              style={{ backgroundColor: 'black', color: 'white' }} 
+              onClick={() => onEdit(taskId)}
+            >
+              Editar
+            </Button>
+            <Button 
+              style={{ backgroundColor: 'black', color: 'white' }} 
+              onClick={() => onDelete(taskId)}
+            >
+              Deletar
+            </Button>
           </ButtonGroup>
         </Box>
       </Popover>
     </ThemeProvider>
   );
-}
+};
