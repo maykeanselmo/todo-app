@@ -5,4 +5,7 @@ Meteor.methods({
   "tasks.insert"(doc) {
     return TasksCollection.insertAsync(doc);
   },
+  "tasks.delete"(_id){
+    return TasksCollection.removeAsync(_id);
+  }
 });
