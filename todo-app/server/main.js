@@ -10,7 +10,7 @@ const SEED_PASSWORD = 'password';
 
 const insertTask = (taskText, time) =>
   TasksCollection.insertAsync({ 
-    text: taskText,
+    name: taskText,
     time: time
   });
 
@@ -24,13 +24,13 @@ Meteor.startup(async () => {
   }
   if ((await TasksCollection.find().countAsync()) === 0) {
     const mockTasks = [
-      { text: "Comprar leite", time: new Date() },
-      { text: "Estudar React", time: new Date() },
-      { text: "Fazer exercícios", time: new Date() }
+      { name: "Comprar leite", time: new Date() },
+      { name: "Estudar React", time: new Date() },
+      { name: "Fazer exercícios", time: new Date() }
     ];
 
     for (const task of mockTasks) {
-      await insertTask(task.text, task.time);
+      await insertTask(task.name, task.time);
     }
   }
 });
