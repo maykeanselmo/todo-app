@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Popover from '@mui/material/Popover';
 
 const theme = createTheme({
   components: {
@@ -17,29 +18,41 @@ const theme = createTheme({
 });
 
 const buttons = [
-  <Button key="one" style={{ backgroundColor: '#2f2f2f', color: 'white' }}>Editar</Button>,
-  <Button key="two" style={{ backgroundColor: '#2f2f2f', color: 'white' }}>Deletar</Button>,
+  <Button key="one" style={{ backgroundColor: 'black', color: 'white' }}>Editar</Button>,
+  <Button key="two" style={{ backgroundColor: 'black', color: 'white' }}>Deletar</Button>,
 ];
 
-export const TaskOptionsButton = () => {
+export const TaskOptionsButton = ({ anchorEl, handleClose }) => {
+  const open = Boolean(anchorEl);
   return (
     <ThemeProvider theme={theme}>
-      <Box
-        sx={{
-          display: 'flex',
-          '& > *': {
-            m: 1,
-          },
+      <Popover
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
         }}
       >
-        <ButtonGroup
-          orientation="vertical"
-          aria-label="Vertical button group"
-          variant="contained"
+        <Box
+          sx={{
+            display: 'flex',
+            backgroundColor: 'black',
+            '& > *': {
+              m: 1,
+            },
+          }}
         >
-          {buttons}
-        </ButtonGroup>
-      </Box>
+          <ButtonGroup
+            orientation="vertical"
+            aria-label="Vertical button group"
+            variant="contained"
+          >
+            {buttons}
+          </ButtonGroup>
+        </Box>
+      </Popover>
     </ThemeProvider>
   );
 }
