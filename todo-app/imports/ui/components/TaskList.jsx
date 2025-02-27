@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'; 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -12,12 +12,15 @@ import { TasksCollection } from '../../api/TasksCollection';
 import { useTracker, useSubscribe } from 'meteor/react-meteor-data';
 import { ThreePonitIcon } from './ThreePointIcon';
 import { TaskOptionsButton } from './TaskOptionsButton';
+import { UpdateForm } from './UpdateForm';
 
 export const TaskList = () => {
   const isLoading = useSubscribe("tasks");
   const tasks = useTracker(() => TasksCollection.find({}, { sort: { createdAt: -1 } }).fetch());
   const [checked, setChecked] = React.useState([]);
   const [menuState, setMenuState] = React.useState({ anchorEl: null, selectedTaskId: null });
+  const [isUpdateFormVisible, setUpdateFormVisible] = React.useState(false);
+  const [selectedTaskId, setSelectedTaskId] = React.useState(null); 
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -45,8 +48,9 @@ export const TaskList = () => {
     handleMenuClose();
   };
 
-  const handleEdit = (_id) => {
-    console.log("Editar tarefa:", _id);
+  const toggleUpdateFormVisibility = (taskId) => {
+    setSelectedTaskId(taskId); 
+    setUpdateFormVisible(!isUpdateFormVisible); 
   };
 
   if (isLoading()) {
@@ -54,43 +58,47 @@ export const TaskList = () => {
   }
 
   return (
-    <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      {tasks.map((task) => {
-        const labelId = `task-${task._id}`;
-        return (
-          <ListItem
-            key={task._id}
-            secondaryAction={
-              <Checkbox
-                edge="end"
-                onChange={handleToggle(task._id)}
-                checked={checked.includes(task._id)}
-                inputProps={{ 'aria-labelledby': labelId }}
+    <>
+      <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+        {tasks.map((task) => {
+          const labelId = `task-${task._id}`;
+          return (
+            <ListItem
+              key={task._id}
+              secondaryAction={
+                <Checkbox
+                  edge="end"
+                  onChange={handleToggle(task._id)}
+                  checked={checked.includes(task._id)}
+                  inputProps={{ 'aria-labelledby': labelId }}
+                />
+              }
+              disablePadding
+            >
+              <ListItemButton>
+                <ListItemAvatar>
+                  <Stack direction="row" spacing={2}>
+                    <Avatar sx={{ bgcolor: 'black', color: 'white' }}>
+                      <AssignmentIcon />
+                    </Avatar>
+                  </Stack>
+                </ListItemAvatar>
+                <ListItemText id={labelId} primary={task.name} sx={{ color: 'black' }} />
+                <ThreePonitIcon onClick={(event) => handleMenuOpen(event, task._id)} />
+              </ListItemButton>
+              <TaskOptionsButton
+                anchorEl={menuState.anchorEl}
+                handleClose={handleMenuClose}
+                taskId={menuState.selectedTaskId}
+                toggleUpdateFormVisibility={() => toggleUpdateFormVisibility(menuState.selectedTaskId)}
+                onDelete={handleDelete}
               />
-            }
-            disablePadding
-          >
-            <ListItemButton>
-              <ListItemAvatar>
-                <Stack direction="row" spacing={2}>
-                  <Avatar sx={{ bgcolor: 'black', color: 'white' }}>
-                    <AssignmentIcon />
-                  </Avatar>
-                </Stack>
-              </ListItemAvatar>
-              <ListItemText id={labelId} primary={task.name} sx={{ color: 'black' }} />
-              <ThreePonitIcon onClick={(event) => handleMenuOpen(event, task._id)} />
-            </ListItemButton>
-            <TaskOptionsButton
-              anchorEl={menuState.anchorEl}
-              handleClose={handleMenuClose}
-              taskId={menuState.selectedTaskId}
-              onEdit={handleEdit}
-              onDelete={handleDelete}
-            />
-          </ListItem>
-        );
-      })}
-    </List>
+            </ListItem>
+          );
+        })}
+      </List>
+
+      {isUpdateFormVisible && <UpdateForm taskId={selectedTaskId} setShowForm={setUpdateFormVisible} />}
+    </>
   );
 };
