@@ -4,6 +4,8 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Popover from '@mui/material/Popover';
+import { useNavigate } from 'react-router-dom';
+
 
 const theme = createTheme({
   components: {
@@ -17,9 +19,18 @@ const theme = createTheme({
   },
 });
 
-export const TaskOptionsButton = ({ anchorEl, handleClose, taskId, onEdit, onDelete }) => {
-  const open = Boolean(anchorEl);
 
+
+
+
+
+export const TaskOptionsButton = ({ anchorEl, handleClose, taskId, toggleUpdateFormVisibility, onDelete }) => {
+  const open = Boolean(anchorEl);
+  const navigate = useNavigate();
+  
+  const handleViewTask = () => {
+    navigate(`/tasks/${taskId}`); 
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -48,9 +59,9 @@ export const TaskOptionsButton = ({ anchorEl, handleClose, taskId, onEdit, onDel
           >
             <Button 
               style={{ backgroundColor: 'black', color: 'white' }} 
-              onClick={() => onEdit(taskId)}
+              onClick={handleViewTask}
             >
-              Editar
+              Vizualizar
             </Button>
             <Button 
               style={{ backgroundColor: 'black', color: 'white' }} 
