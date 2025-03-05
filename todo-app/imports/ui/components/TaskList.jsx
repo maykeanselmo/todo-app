@@ -1,4 +1,5 @@
 import * as React from 'react'; 
+import { Meteor } from 'meteor/meteor';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -13,6 +14,8 @@ import { useTracker, useSubscribe } from 'meteor/react-meteor-data';
 import { ThreePonitIcon } from './ThreePointIcon';
 import { TaskOptionsButton } from './TaskOptionsButton';
 import { UpdateForm } from './UpdateForm';
+import Typography from '@mui/material/Typography'; 
+
 
 export const TaskList = () => {
   const isLoading = useSubscribe("tasks");
@@ -21,6 +24,7 @@ export const TaskList = () => {
   const [menuState, setMenuState] = React.useState({ anchorEl: null, selectedTaskId: null });
   const [isUpdateFormVisible, setUpdateFormVisible] = React.useState(false);
   const [selectedTaskId, setSelectedTaskId] = React.useState(null); 
+  const user = useTracker(() => Meteor.user());
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -43,8 +47,22 @@ export const TaskList = () => {
     setMenuState({ anchorEl: null, selectedTaskId: null });
   };
 
-  const handleDelete = (_id) => {
-    Meteor.callAsync("tasks.delete", _id);
+  const handleDelete = async (_id) => {
+    try {
+      const currentUserName = Meteor.user().username;
+      const currentTask = await Meteor.callAsync('tasks.getTask', _id);
+  
+      if (currentUserName === currentTask.createBy) {
+        await Meteor.callAsync("tasks.delete", _id);
+      } else {
+        alert("Só o usuário que criou a tarefa pode deletá-la");
+      }
+  
+    } catch (error) {
+      console.error("Erro ao tentar excluir a tarefa:", error);
+      alert("Ocorreu um erro ao tentar excluir a tarefa.");
+    }
+  
     handleMenuClose();
   };
 
@@ -75,6 +93,7 @@ export const TaskList = () => {
               }
               disablePadding
             >
+              
               <ListItemButton>
                 <ListItemAvatar>
                   <Stack direction="row" spacing={2}>
@@ -83,15 +102,30 @@ export const TaskList = () => {
                     </Avatar>
                   </Stack>
                 </ListItemAvatar>
-                <ListItemText id={labelId} primary={task.name} sx={{ color: 'black' }} />
+                <ListItemText
+                      id={labelId}
+                      primary={task.name}
+                      secondary={
+                        <>
+                          <Typography variant="body2" color="text.secondary" component="span">
+                            {task.status}
+                          </Typography>
+                          <br />
+                          <Typography variant="body2" color="text.secondary" component="span">
+                            {task.date}
+                          </Typography>
+                        </>
+                      }
+                      sx={{ color: 'black' }}
+/>
                 <ThreePonitIcon onClick={(event) => handleMenuOpen(event, task._id)} />
               </ListItemButton>
               <TaskOptionsButton
-                anchorEl={menuState.anchorEl}
+                 anchorEl={menuState.anchorEl ? menuState.anchorEl : null}
                 handleClose={handleMenuClose}
                 taskId={menuState.selectedTaskId}
                 toggleUpdateFormVisibility={() => toggleUpdateFormVisibility(menuState.selectedTaskId)}
-                onDelete={handleDelete}
+                onDelete={ handleDelete}
               />
             </ListItem>
           );
