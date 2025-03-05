@@ -4,7 +4,6 @@ import { TasksCollection } from '../imports/api/TasksCollection';
 import "../imports/api/TasksPublications"; 
 import "../imports/api/tasksMethods"; 
 
-
 const SEED_USERNAME = 'meteorite';
 const SEED_PASSWORD = 'password';
 
