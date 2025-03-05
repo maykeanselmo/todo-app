@@ -24,5 +24,32 @@ Meteor.methods({
       }
     );
   },
+  "tasks.setStatus"(taskId, status){
+    if (!this.userId) {
+      throw new Meteor.Error("Não autorizado", "Você precisa estar logado para atualizar uma tarefa.");
+    }
+    return TasksCollection.updateAsync(
+      { _id: taskId },
+      {
+        $set: {
+          status: status
+        },
+      }
+    );
+  },
+  
+  'tasks.getTask'(taskId) {
+    if (!taskId) {
+      throw new Meteor.Error('invalid-arguments', 'Task ID não fornecido');
+    }
+
+    const task = TasksCollection.findOneAsync(taskId);
+
+    if (!task) {
+      throw new Meteor.Error('task-not-found', 'Tarefa não encontrada');
+    }
+
+    return task;
+  }
 
 });
