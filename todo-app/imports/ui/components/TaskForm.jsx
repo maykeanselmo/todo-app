@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { Meteor } from 'meteor/meteor';
 import { TextField, Button, Typography, Box } from "@mui/material";
+import { useTracker } from 'meteor/react-meteor-data';
 
 export const TaskForm = () => {
   const [task, setTask] = useState({ name: "", description: "", date: "" });
+  const user = useTracker(() => Meteor.user());
 
   const handleChange = (e) => {
     setTask({ ...task, [e.target.name]: e.target.value });
@@ -19,7 +22,9 @@ export const TaskForm = () => {
       name: task.name,
       description: task.description,
       date: task.date,
+      status: "CADASTRADO",
       createdAt: new Date(),
+      createBy: Meteor.user().username
     });
 
     setTask({
