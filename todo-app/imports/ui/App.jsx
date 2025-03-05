@@ -1,25 +1,27 @@
 import { Meteor } from 'meteor/meteor';
-import React, {Fragment} from 'react';
+import React from 'react';
 import { useTracker} from 'meteor/react-meteor-data';
-import { LoginForm } from './LoginForm';
+import { LoginForm } from './components/LoginForm.jsx';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+
+console.log("LoginForm:", LoginForm);
 
 export const App = () => {
 
+  const navigate = useNavigate();
   const user = useTracker(() => Meteor.user());
-  const logout = () => Meteor.logout();
 
-  return (
+
+  useEffect(() => {
+    if (user) {
+      navigate('/welcome');
+    }
+  }, [user, navigate]);
+
+  return user ? null : (
     <div className='main'>
-      {user? (
-        <div>
-          <p>Bem-vindo, {user.username}</p>
-          <button onClick={logout}>Sair</button>
-        </div>
-      ) : (
-        <div>
-          <LoginForm/>
-        </div>
-      )}
+      <LoginForm />
     </div>
-  )
+  );
 };

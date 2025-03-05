@@ -39,6 +39,8 @@ export const LoginForm = () => {
           alert("Erro ao fazer login: " + error.reason);
         }
       });
+      //localStorage.setItem('user', username);
+      //navigate('/welcome');
     }
   };
 

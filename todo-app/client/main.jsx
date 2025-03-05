@@ -2,8 +2,12 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Meteor } from 'meteor/meteor';
 import { App } from '/imports/ui/App';
-
+import "../imports/api/tasksMethods"; 
 import { createBrowserRouter, RouterProvider} from 'react-router-dom'; 
+import { Welcome } from '../imports/ui/routes/Welcome';
+import {TasksPage} from '../imports/ui/routes/TasksPage.jsx';
+import {TaskDetails} from '../imports/ui/routes/TaskDetails.jsx';
+
 Meteor.startup(() => {
   const container = document.getElementById('react-target');
   const root = createRoot(container);
@@ -13,6 +17,18 @@ Meteor.startup(() => {
       path: "/",
       element: <App />,
     },
+    {
+      path: "/welcome",
+      element: <Welcome />,
+    },
+    {
+      path: "/tasks",
+      element: <TasksPage />,
+    },
+    {
+      path: "/tasks/:taskId",
+      element: <TaskDetails />,
+    }
   ]);
 
   root.render(
