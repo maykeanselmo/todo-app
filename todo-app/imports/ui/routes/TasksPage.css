@@ -1,0 +1,67 @@
+/* TasksPage.css */
+.tasks-page {
+  background-color: #ffffff;
+  color: #2c3e50;
+  font-family: 'Arial', sans-serif;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tasks-title {
+  font-size: 2.5em;
+  color: #2c3e50;
+  margin-bottom: 40px;
+  font-weight: 600;
+}
+
+.MuiList-root {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); 
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.MuiListItem-root {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.MuiListItem-root:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Efeito de sombra ao passar o mouse */
+}
+
+.tasks-button {
+  color: #2980b9;
+  font-size: 1.1em;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.tasks-button:hover {
+  color: #3498db;
+  text-decoration: underline;
+}
+/* TasksPage.css */
+.add-task-button {
+  background-color: #47dbfc; /* Cor de fundo */
+  color: white; /* Cor do texto */
+  padding: 10px 20px; /* Espaçamento interno */
+  border: none; /* Remove a borda */
+  border-radius: 5px; /* Bordas arredondadas */
+  cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+  font-size: 16px; /* Tamanho da fonte */
+  margin-bottom: 20px; /* Espaçamento abaixo do botão */
+}
+
+.add-task-button:hover {
+  background-color: #e1dabd; /* Cor ao passar o mouse */
+}
