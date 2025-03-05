@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { Meteor } from "meteor/meteor";
 import { TextField, Button, Typography, Box } from "@mui/material";
 import { TasksCollection } from "../../api/TasksCollection"; 
+import { useTracker } from 'meteor/react-meteor-data';
 
 export const UpdateForm = ({ taskId, setShowForm }) => {
   const [task, setTask] = useState({ name: "", description: "", date: "" });
+  const user = useTracker(() => Meteor.user());
 
 
   useEffect(() => {
@@ -26,16 +29,25 @@ export const UpdateForm = ({ taskId, setShowForm }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
- 
-    await Meteor.callAsync("tasks.update", taskId, {
-        name: task.name,
-        description: task.description,
-        date: task.date,
-        updatedAt: new Date(),
-    });
-
-    
+       try {
+            const currentUserName = Meteor.user().username;
+            const currentTask = await Meteor.callAsync('tasks.getTask', taskId);
+        
+            if (currentUserName === currentTask.createBy) {
+              await Meteor.callAsync("tasks.update", taskId, {
+                name: task.name,
+                description: task.description,
+                date: task.date,
+                updatedAt: new Date(),
+              });
+            } else {
+              alert("Só o usuário que criou a tarefa pode editá-la");
+            }
+        
+          } catch (error) {
+            console.error("Erro ao tentar editar a tarefa:", error);
+            alert("Ocorreu um erro ao tentar editar a tarefa.");
+          }
     setTask({
       name: "",
       description: "",
