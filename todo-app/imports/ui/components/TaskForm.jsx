@@ -31,7 +31,7 @@ export const TaskForm = () => {
       date: task.date,
       status: "CADASTRADO",
       createdAt: new Date(),
-      createBy: Meteor.user().username,
+      createByUser: Meteor.userId(),
       typeTask: typeTask
     });
 
