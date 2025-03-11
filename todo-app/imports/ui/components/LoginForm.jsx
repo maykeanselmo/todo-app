@@ -27,6 +27,7 @@ export const LoginForm = () => {
     if (isRegistering) {
       Accounts.createUser({ email, username, password }, (error) => {
         if (error) {
+          console.log(error)
           alert("Erro ao criar conta: " + error.reason);
         } else {
           alert("Conta criada com sucesso! Faça login.");
@@ -39,8 +40,6 @@ export const LoginForm = () => {
           alert("Erro ao fazer login: " + error.reason);
         }
       });
-      //localStorage.setItem('user', username);
-      //navigate('/welcome');
     }
   };
 

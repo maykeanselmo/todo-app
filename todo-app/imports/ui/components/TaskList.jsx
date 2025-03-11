@@ -77,7 +77,7 @@ export const TaskList = () => {
 
   return (
     <>
-      <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      <List dense sx={{ width: '100%', maxWidth: 500, bgcolor: 'background.paper' }}>
         {tasks.map((task) => {
           const labelId = `task-${task._id}`;
           return (
