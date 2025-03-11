@@ -9,7 +9,6 @@ Meteor.methods({
       if (!user) {
         throw new Meteor.Error('user-not-found', 'User not found');
       }
-      console.log("Usuário encontrado:", user);
       return user;
     } catch (error) {
       if (error.error === 'user-not-found') {
