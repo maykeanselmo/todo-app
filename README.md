@@ -1,4 +1,4 @@
-# 📝 Todo List com Meteor, React Router e Material-UI  
+# 📝 To Do List   
 
 Este projeto é uma aplicação de lista de tarefas (To-Do List) desenvolvida com Meteor, React e Material-UI. A aplicação permite que usuários gerenciem suas tarefas de forma segura, garantindo que apenas o criador da tarefa possa editá-la ou removê-la.  
 
