@@ -1,6 +1,6 @@
-/* TasksPage.css */
+
 .tasks-page {
-  background-color: #ffffff;
+  background-color: #E5E4E2;
   color: #2c3e50;
   font-family: 'Arial', sans-serif;
   padding: 60px 20px;
@@ -35,7 +35,7 @@
 }
 
 .MuiListItem-root:hover {
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Efeito de sombra ao passar o mouse */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 .tasks-button {
@@ -50,18 +50,17 @@
   color: #3498db;
   text-decoration: underline;
 }
-/* TasksPage.css */
+
 .add-task-button {
-  background-color: #47dbfc; /* Cor de fundo */
-  color: white; /* Cor do texto */
-  padding: 10px 20px; /* Espaçamento interno */
-  border: none; /* Remove a borda */
-  border-radius: 5px; /* Bordas arredondadas */
-  cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
-  font-size: 16px; /* Tamanho da fonte */
-  margin-bottom: 20px; /* Espaçamento abaixo do botão */
+  background-color: #47dbfc; 
+  color: white; 
+  padding: 10px 20px; 
+  border: none; 
+  border-radius: 5px; 
+  font-size: 16px; 
+  margin-bottom: 20px; 
 }
 
 .add-task-button:hover {
-  background-color: #e1dabd; /* Cor ao passar o mouse */
+  background-color: #e1dabd; 
 }

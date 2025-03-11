@@ -1,7 +1,7 @@
 .statusButton {
     display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-    margin-top: 10px; /* Espaço extra opcional */
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 10px; 
   }
   
