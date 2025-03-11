@@ -12,7 +12,6 @@ export const App = () => {
   const navigate = useNavigate();
   const user = useTracker(() => Meteor.user());
 
-
   useEffect(() => {
     if (user) {
       navigate('/welcome');

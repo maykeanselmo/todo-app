@@ -2,12 +2,19 @@ import React, { useState } from "react";
 import { Meteor } from 'meteor/meteor';
 import { TextField, Button, Typography, Box } from "@mui/material";
 import { useTracker } from 'meteor/react-meteor-data';
+import { TaskType } from "./TaskType";
 
 export const TaskForm = () => {
-  const [task, setTask] = useState({ name: "", description: "", date: "" });
+  const [task, setTask] = useState({ name: "", description: "", date: ""});
   const user = useTracker(() => Meteor.user());
+  const [typeTask, setTypeTask] = useState('public'); 
 
-  const handleChange = (e) => {
+
+  const handleTypeTask = (event) => {
+    setTypeTask(event.target.value);
+  };
+
+  const handleChangeTask = (e) => {
     setTask({ ...task, [e.target.name]: e.target.value });
   };
 
@@ -24,7 +31,8 @@ export const TaskForm = () => {
       date: task.date,
       status: "CADASTRADO",
       createdAt: new Date(),
-      createBy: Meteor.user().username
+      createByUser: Meteor.userId(),
+      typeTask: typeTask
     });
 
     setTask({
@@ -32,6 +40,8 @@ export const TaskForm = () => {
       description: "",
       date: "",
     });
+
+    setTypeTask('public');
   };
 
   return (
@@ -60,7 +70,7 @@ export const TaskForm = () => {
         variant="outlined"
         fullWidth
         value={task.name}
-        onChange={handleChange}
+        onChange={ handleChangeTask}
         required
         sx={{
           marginBottom: 2,
@@ -79,7 +89,7 @@ export const TaskForm = () => {
         rows={4}
         fullWidth
         value={task.description}
-        onChange={handleChange}
+        onChange={ handleChangeTask}
         required
         sx={{
           marginBottom: 2,
@@ -97,7 +107,7 @@ export const TaskForm = () => {
         variant="outlined"
         fullWidth
         value={task.date}
-        onChange={handleChange}
+        onChange={ handleChangeTask}
         required
         InputLabelProps={{ shrink: true }}
         sx={{
@@ -109,6 +119,7 @@ export const TaskForm = () => {
           },
         }}
       />
+      <TaskType handleChange = { handleTypeTask }  typeValue = {typeTask}/>
       <Button
         variant="contained"
         fullWidth
