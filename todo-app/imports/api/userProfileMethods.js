@@ -15,15 +15,33 @@ Meteor.methods({
       
       const profileId = await UserProfileCollection.insertAsync({
         ...profileData,
-        userId: this.userId, 
+        _id: this.userId, 
         createdAt: new Date(), 
       });
-
-      console.log('Perfil inserido com sucesso. ID:', profileId);
+    
       return profileId;
     } catch (error) {
-      console.error("Erro ao inserir perfil:", error); // Log detalhado do erro
+      console.error("Erro ao inserir perfil:", error);
       throw new Meteor.Error('server-error', 'Erro interno do servidor ao salvar perfil.');
     }
   },
+  async 'userProfile.get'() {
+    if (!this.userId) {
+      throw new Meteor.Error('not-authorized', 'Você precisa estar logado para acessar o perfil.');
+    }
+
+    try {
+      const profile = await UserProfileCollection.findOneAsync({ _id: this.userId });
+
+      if (!profile) {
+        throw new Meteor.Error('profile-not-found', 'Perfil não encontrado para o usuário.');
+      }
+
+      return profile;
+    } catch (error) {
+      console.error("Erro ao buscar perfil:", error);
+      throw new Meteor.Error('server-error', 'Erro interno do servidor ao buscar perfil.');
+    }
+  },
+
 });
