@@ -24,7 +24,7 @@ export const Profile = () => {
 
   const isLoading = useSubscribe("profile");
   const profile = useTracker(() => {
-    const userProfile = UserProfileCollection.findOne({ userId: Meteor.userId() });
+    const userProfile = UserProfileCollection.findOne({ _id: Meteor.userId() });
     return userProfile;
   });
 
