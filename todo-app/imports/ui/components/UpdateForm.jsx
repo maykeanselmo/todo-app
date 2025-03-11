@@ -30,10 +30,10 @@ export const UpdateForm = ({ taskId, setShowForm }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
        try {
-            const currentUserName = Meteor.user().username;
+            const currentUserId= Meteor.userId();
             const currentTask = await Meteor.callAsync('tasks.getTask', taskId);
         
-            if (currentUserName === currentTask.createBy) {
+            if (currentUserId === currentTask.createByUser) {
               await Meteor.callAsync("tasks.update", taskId, {
                 name: task.name,
                 description: task.description,
