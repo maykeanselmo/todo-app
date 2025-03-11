@@ -7,6 +7,7 @@ import { Button, Card, CardContent, Typography, CircularProgress, Box } from "@m
 import { format } from "date-fns";
 import { UpdateForm } from "../components/UpdateForm";
 import { TaskStatus } from "../components/TaskStatus";
+import { TemporaryDrawer } from "../components/TemporaryDrawer";
 import "./TaskDetails.css";
 
 export const TaskDetails = () => {
@@ -65,6 +66,9 @@ export const TaskDetails = () => {
 
   return (
     <>
+      <div>
+        <TemporaryDrawer/> 
+      </div>
       <Box sx={{ padding: 4 }}>
         <Card sx={{ borderRadius: 2, boxShadow: 3, overflow: "hidden" }}>
           <CardContent>
