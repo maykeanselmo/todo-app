@@ -1,6 +1,6 @@
 import React from "react";
 import { DashBoardCard } from "./DashBoardCard";
-import { TasksCollection } from "../../api/TasksCollection";
+import { TasksCollection } from "../../../api/TasksCollection";
 import { useTracker, useSubscribe } from "meteor/react-meteor-data";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";

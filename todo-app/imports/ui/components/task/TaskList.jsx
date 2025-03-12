@@ -9,9 +9,9 @@ import Checkbox from '@mui/material/Checkbox';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import { TasksCollection } from '../../api/TasksCollection';
+import { TasksCollection } from '../../../api/TasksCollection';
 import { useTracker, useSubscribe } from 'meteor/react-meteor-data';
-import { ThreePonitIcon } from './ThreePointIcon';
+import { ThreePointIcon} from './ThreePointIcon';
 import { TaskOptionsButton } from './TaskOptionsButton';
 import { UpdateForm } from './UpdateForm';
 import Typography from '@mui/material/Typography'; 
@@ -118,7 +118,7 @@ export const TaskList = () => {
                       }
                       sx={{ color: 'black' }}
 />
-                <ThreePonitIcon onClick={(event) => handleMenuOpen(event, task._id)} />
+                <ThreePointIcon onClick={(event) => handleMenuOpen(event, task._id)} />
               </ListItemButton>
               <TaskOptionsButton
                  anchorEl={menuState.anchorEl ? menuState.anchorEl : null}

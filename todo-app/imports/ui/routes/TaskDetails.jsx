@@ -5,9 +5,9 @@ import { useTracker, useSubscribe } from "meteor/react-meteor-data";
 import { TasksCollection } from "/imports/api/TasksCollection";
 import { Button, Card, CardContent, Typography, CircularProgress, Box } from "@mui/material";
 import { format } from "date-fns";
-import { UpdateForm } from "../components/UpdateForm";
-import { TaskStatus } from "../components/TaskStatus";
-import { TemporaryDrawer } from "../components/TemporaryDrawer";
+import { UpdateForm } from "../components/task/UpdateForm";
+import { TaskStatus } from "../components/task/TaskStatus";
+import { TemporaryDrawer } from "../components/drawer/TemporaryDrawer";
 import "./TaskDetails.css";
 
 export const TaskDetails = () => {

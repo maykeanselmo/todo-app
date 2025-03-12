@@ -3,7 +3,7 @@ import { Meteor } from "meteor/meteor";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { useTracker } from "meteor/react-meteor-data";
-import { TasksCollection } from "../../api/TasksCollection";
+import { TasksCollection } from "../../../api/TasksCollection";
 
 export const TaskStatus = ({task}) => {
   

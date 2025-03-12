@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { useTracker} from 'meteor/react-meteor-data';
-import { LoginForm } from './components/LoginForm.jsx';
+import { LoginForm } from './components/login/LoginForm.jsx';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
