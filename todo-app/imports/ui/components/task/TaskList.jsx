@@ -49,10 +49,10 @@ export const TaskList = () => {
 
   const handleDelete = async (_id) => {
     try {
-      const currentUserName = Meteor.user().username;
+      const currentUser = Meteor.userId()
       const currentTask = await Meteor.callAsync('tasks.getTask', _id);
   
-      if (currentUserName === currentTask.createBy) {
+      if (currentUser === currentTask.createByUser) {
         await Meteor.callAsync("tasks.delete", _id);
       } else {
         alert("Só o usuário que criou a tarefa pode deletá-la");
