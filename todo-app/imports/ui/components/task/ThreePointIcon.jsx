@@ -31,7 +31,7 @@ FontAwesomeSvgIcon.propTypes = {
   icon: PropTypes.any.isRequired,
 };
 
-export const ThreePonitIcon = ({ onClick }) => {
+export const ThreePointIcon = ({ onClick }) => {
   return (
     <Stack direction="row" spacing={2} onClick = {onClick}>
       <IconButton aria-label="Example">

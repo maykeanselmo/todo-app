@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Meteor } from "meteor/meteor";
 import { useTracker } from 'meteor/react-meteor-data';
-import { TaskList } from '../components/TaskList';
-import { TaskForm } from "../components/TaskForm.jsx";
-import { AddTaskButton } from "../components/AddTaskButton.jsx";
-import { TemporaryDrawer } from "../components/TemporaryDrawer.jsx";
-import { LoginRequired } from "../components/LoginRequired.jsx";
+import { TaskList } from '../components/task/TaskList';
+import { TaskForm } from "../components/task/TaskForm.jsx";
+import { AddTaskButton } from "../components/task/AddTaskButton.jsx";
+import { TemporaryDrawer } from "../components/drawer/TemporaryDrawer.jsx";
+import { LoginRequired } from "../components/login/LoginRequired.jsx";
 import "./TasksPage.css";
 
 export const TasksPage = () => {

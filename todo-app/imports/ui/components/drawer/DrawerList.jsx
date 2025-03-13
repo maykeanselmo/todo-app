@@ -2,7 +2,7 @@
 import React, {} from 'react';
 import { Box,  List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, IconButton, Fade, Avatar, Typography } from '@mui/material';
 import { Home as HomeIcon, AccountCircle as AccountCircleIcon, Logout as LogoutIcon } from '@mui/icons-material';
-import { UserResumeCard } from './UserResumeCard';
+import { UserResumeCard } from '../profile/UserResumeCard';
 
 
 export const DrawerList = ({ toggleDrawer, handleWelcome, logout, handleProfile}) => (

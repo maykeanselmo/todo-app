@@ -2,10 +2,10 @@ import React from "react";
 import { Meteor } from "meteor/meteor";
 import { useTracker } from "meteor/react-meteor-data";
 import { useNavigate } from "react-router-dom";
-import { TemporaryDrawer } from "../components/TemporaryDrawer.jsx";
-import { DashBoard } from "../components/DashBoard.jsx";
+import { TemporaryDrawer } from "../components/drawer/TemporaryDrawer.jsx";
+import { DashBoard } from "../components/dashBoard/DashBoard.jsx";
 import { Container, Typography, Button, Box, Paper } from "@mui/material";
-import { LoginRequired } from "../components/LoginRequired.jsx";
+import { LoginRequired } from "../components/login/LoginRequired.jsx";
 
 export const Welcome = () => {
   const user = useTracker(() => Meteor.user());

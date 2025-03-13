@@ -1,8 +1,8 @@
 import * as React from "react";
 import "./UserProfilePage.css"; 
-import { Profile } from "../components/Profile.jsx";
+import { Profile } from "../components/profile/Profile.jsx";
 import { useTracker } from 'meteor/react-meteor-data';
-import { TemporaryDrawer } from "../components/TemporaryDrawer.jsx";
+import { TemporaryDrawer } from "../components/drawer/TemporaryDrawer.jsx";
 import { useNavigate } from 'react-router-dom';
 
 export const UserProfilePage = () => {
